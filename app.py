@@ -29,9 +29,6 @@ scaler = MinMaxScaler (feature_range= (0, 1))
 
 data_training_array = scaler.fit_transform(data_training)
 
-
-#Splitting Data into ×_ train and y_train
-
 x_train = []
 y_train = []
 
@@ -43,7 +40,6 @@ x_train, y_train = np.array(x_train), np.array(y_train)
 
 
 model = load_model ('keras_model.h5')
-#Testing Part
 past_100_days = data_training.tail (100)
 
 final_df = pd.concat([past_100_days, data_testing], ignore_index=True)
@@ -67,10 +63,6 @@ scaler = scaler.scale_
 scale_factor = 1/scaler [0]
 y_predicted = y_predicted * scale_factor
 y_test = y_test * scale_factor
-
-
-
-#Final Graph
 
 st.subheader ('Predictions vs Original')
 
