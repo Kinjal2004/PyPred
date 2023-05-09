@@ -2,14 +2,14 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import pandas_datareader.data as data
-import yfinance as yfin
+import yfinance as yf
 from keras.models import load_model
 import streamlit as st
 
 st.title('Stock Trend Predictor')
 
 user_input = st.text_input('Enter Stock Ticker','HAL')
-yfin.pdr_override()
+yf.pdr_override()
 start = '2022-01-01'
 end = '2022-12-31'
 df = data.get_data_yahoo(user_input, start=start, end=end)
