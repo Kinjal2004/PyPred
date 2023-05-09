@@ -8,13 +8,13 @@ import streamlit as st
 
 st.title('Stock Trend Predictor')
 
-user_input = st.text_input('Enter Stock Ticker','AAPL')
+user_input = st.text_input('Enter Stock Ticker','HAL')
 yfin.pdr_override()
-start = '2010-01-01'
-end = '2019-01-01'
+start = '2022-01-01'
+end = '2022-12-31'
 df = data.get_data_yahoo(user_input, start=start, end=end)
 
-st.subheader('Data from 2010-2019')
+st.subheader('Data from 1st January 2022 to 31st December 2022')
 st.write(df.describe())
 #Visualization
 st.subheader('Closing Price vs Time Chart')
@@ -27,7 +27,7 @@ data_testing = pd.DataFrame (df['Close'][int(len (df) *0.70): int(len (df)) ])
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler (feature_range= (0, 1))
 
-data_training_array = scaler. fit_transform(data_training)
+data_training_array = scaler.fit_transform(data_training)
 
 
 #Splitting Data into ×_ train and y_train
@@ -76,10 +76,10 @@ st.subheader ('Predictions vs Original')
 
 fig2 = plt.figure(figsize=(12,6))
 
-plt.plot (y_test, 'b', label = 'Original Price')
+plt.plot (y_test, 'b', label = 'Original Price',color="red")
 
 plt.plot (y_predicted,
-'p', label = 'Predicted Price')
+'p', label = 'Predicted Price',color="green")
 plt.xlabel('Time')
 plt.ylabel('Price')
 
